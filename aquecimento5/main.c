@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include "fracao.h"
+#include "vetorfracao.h"
 
 
 int main() {
-	TFracao f1,f2,f3;
+	TFracao * vet;
+	vet = alocaVetFrac(5);
 	
-    inicFracao(&f1,1,5);
-	inicFracao(&f2,3,2);
-	diviFracao(f1,f2,&f3);
-	imprimeFracao(f3);
-	
-	
+	preencheVetFrac(vet,5);
+
+	imprimeVetFrac(vet,5);
 }
 

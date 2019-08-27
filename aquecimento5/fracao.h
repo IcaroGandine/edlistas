@@ -1,3 +1,6 @@
+#ifndef FRACAO_H
+#define FRACAO_H
+
 typedef struct Fracao {
     int n;
     int d;
@@ -15,3 +18,4 @@ void multFracao(TFracao f1, TFracao f2, TFracao * f3); // testado
 
 void diviFracao(TFracao f1, TFracao f2, TFracao * f3); // testado
 
+#endif
