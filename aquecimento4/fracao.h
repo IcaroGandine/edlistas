@@ -13,5 +13,5 @@ void somaFracao(TFracao f1, TFracao f2, TFracao * f3); // testado
 
 void multFracao(TFracao f1, TFracao f2, TFracao * f3); // testado
 
-void diviFracao(TFracao f1, TFracao f2, TFracao * f3);
+void diviFracao(TFracao f1, TFracao f2, TFracao * f3); // testado
 
