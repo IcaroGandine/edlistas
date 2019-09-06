@@ -2,8 +2,6 @@
 #include <string.h>
 #include "pessoa.h"
 
-#define TAM 4
-
 void f_preencheVetor(T_Pessoa v[], int tam) {
     int i=0;
     for (i=0;i<tam;i++) {
@@ -38,9 +36,9 @@ void f_ordenaVetorIdade(T_Pessoa v[], int tam) {
     int i=0,j=0;
     T_Pessoa aux;
 
-    for(i=0;i<TAM;i++) {
+    for(i=0;i<tam;i++) {
 
-        for(j=i+1;j<TAM;j++) {
+        for(j=i+1;j<tam;j++) {
 
             if (v[i].idade > v[j].idade) {
                 aux = v[i];
@@ -55,9 +53,9 @@ void f_ordenaVetorAltura(T_Pessoa v[], int tam) {
     int i=0,j=0;
     T_Pessoa aux;
 
-    for(i=0;i<TAM;i++) {
+    for(i=0;i<tam;i++) {
 
-        for(j=i+1;j<TAM;j++) {
+        for(j=i+1;j<tam;j++) {
 
             if (v[i].altura > v[j].altura) {
                 aux = v[i];
@@ -72,9 +70,9 @@ void f_ordenaVetorNome(T_Pessoa v[], int tam) {
     int i=0,j=0;
     T_Pessoa aux;
 
-    for(i=0;i<TAM;i++) {
+    for(i=0;i<tam;i++) {
 
-        for(j=i+1;j<TAM;j++) {
+        for(j=i+1;j<tam;j++) {
 
             if (strcmp(v[i].nome,v[j].nome)>0) {
                 aux = v[i];
