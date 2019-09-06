@@ -1,4 +1,5 @@
 #include "pessoa.h"
+#define TAM 5
 
 int main() {
 T_Pessoa v[TAM];

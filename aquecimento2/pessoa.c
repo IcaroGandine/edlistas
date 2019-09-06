@@ -12,7 +12,7 @@ void f_preencheVetor(T_Pessoa v[], int tam) {
         scanf("%i", &(v[i].idade));
 
         printf("Digite o nome: \n");
-        scanf("%s", (v[i].nome));
+        scanf(" %[^\n]", (v[i].nome));
 
         printf("Digite a altura: \n");
         scanf("%f", &(v[i].altura));
