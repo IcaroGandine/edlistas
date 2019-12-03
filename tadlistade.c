@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "tadlistade.h"
 
 /* Ícaro Gandine Fialho Weiler - 20152bsi0315
@@ -25,7 +24,7 @@ Plista init_lst(void) {
 	if (lista!=NULL) {
 	Tno * no_aux;
 	for (no_aux=lista->prim; no_aux!=NULL; no_aux=no_aux->prox) {
-		printf("%s\n",no_aux->info);
+		printf("Matricula: %i\n",(no_aux->info).matricula);
 	}		
 	}
 }
@@ -42,7 +41,7 @@ int empty_lst(Plista lista) {
 }
 
 
-void append_lst(Plista lst, char nome[50]){
+void append_lst(Plista lst, Taluno elem){
 	Pno novo = NULL;
 	
 	if  (lst != NULL){
@@ -50,8 +49,7 @@ void append_lst(Plista lst, char nome[50]){
 		novo->ante = NULL;
 		novo->prox = NULL;
 		
-		//novo->info = nome;
-		strcpy(novo->info,nome);
+		novo->info = elem;
 		
 		if (empty_lst(lst)) {
 			lst->prim = novo;
@@ -77,14 +75,14 @@ int len_lst(Plista lista) {
 	
 }
 
-int in_lst(Plista lista, char * nome) {
+int in_lst(Plista lista, Taluno elemento) {
 	
 	Tno * no_aux;
 	int pos=0;
 	
 	if (lista!= NULL) {
 	for (no_aux=lista->prim;no_aux!=NULL; no_aux=no_aux->prox) {
-		if (no_aux->info==nome) return 1;
+		if ((no_aux->info).matricula==elemento.matricula) return 1;
 		
 		pos++;
 	}
@@ -152,13 +150,12 @@ void insert_lst(Plista lst, int pos, double elem) {
 
 */
 
-void insert_start(Plista lista, char * nome) {
+void insert_start(Plista lista, Taluno elem) {
 	
 	Pno novo; 
 	novo = (Pno) malloc(sizeof(Tno));
 	novo->ante = NULL;
-	//novo->info = nome;
-	strcpy(novo->info,nome);
+	novo->info = elem;
 	novo->prox = lista->prim;
 	
 	if (lista->tam==0) {
@@ -177,13 +174,13 @@ void insert_start(Plista lista, char * nome) {
 
 Plista load_lst (FILE * arq) {
 	if (arq!=NULL) {
-		char nome[50];
+		Taluno elem;
 		Plista lista;
 		lista = init_lst();
 		
 		while (!feof(arq)) {
-			fscanf(arq,"%s",nome);
-			append_lst(lista,nome);
+			fscanf(arq,"%lf",&elem);
+			append_lst(lista,elem);
 			
 		}
 		
@@ -195,12 +192,11 @@ Plista load_lst (FILE * arq) {
 void save_lst(Plista lst, FILE * arq) {
 	if ((arq!=NULL)&&(lst!=NULL)&&(!empty_lst(lst))) {
 		
-		char nome [50];
+		double elem;
 		Pno no_aux = lst->prim;
 		while (no_aux!=NULL) {
-			//nome = no_aux->info;
-			strcpy(nome, no_aux->info);
-			fprintf(arq,"%s\n",nome);
+			elem = no_aux->info;
+			fprintf(arq,"%lf\n",elem);
 			no_aux = no_aux->prox;
 		} 
 	}
@@ -243,11 +239,11 @@ void del_pos_lst(Plista lst, int pos) {
 
 }
 
-int index_lst(Plista lista, char * nome) {
+int index_lst(Plista lista, Taluno elem) {
 	Pno aux = lista->prim;
 	int pos = 0;
 	while (aux!=NULL) {
-		if (aux->info == nome) return pos;
+		if (aux->info == elem) return pos;
 		pos++;
 		aux = aux->prox;
 	}
@@ -255,17 +251,17 @@ int index_lst(Plista lista, char * nome) {
 	return -1; 
 }
 
-void del_info_lst(Plista lst, char * nome) {
+void del_info_lst(Plista lst, Taluno elem) {
 	int pos;
 
-	pos = index_lst(lst,nome);
+	pos = index_lst(lst,elem);
 
 	if (pos >= 0 ) {
 		del_pos_lst(lst,pos);
 	}
 }
 
-char * get_pos_lst(Plista lst, int pos) {
+double get_pos_lst(Plista lst, int pos) {
 	int i;
 	if (pos>(lst->tam)-1) {
 		printf ("Posicao nao existente \n");
@@ -278,37 +274,4 @@ char * get_pos_lst(Plista lst, int pos) {
 	}
 
 	return aux->info;
-}
-
-void insert_ord_lst(Plista lst, char * nome) {
-	Pno aux = lst->prim;
-	Pno anterior,novo;
-	
-	
-	
-	if (strcmp(nome,lst->ulti->info)>0) {
-		append_lst(lst,nome);
-	}
-	
-		else if((strcmp(nome,lst->prim->info)<0) || (lst->tam == 0)) {
-			insert_start(lst,nome);
-		}
-		
-			else {
-				
-				novo = (Pno) malloc(sizeof(Tno));
-				while (strcmp(nome,aux->info)>0) {
-					aux = aux->prox;
-				}
-				anterior = aux->ante;
-				
-				novo->prox = aux;
-				novo->ante = anterior;
-				
-				aux->ante = novo;
-				anterior->prox = novo;
-				
-			}
-	
-	
 }

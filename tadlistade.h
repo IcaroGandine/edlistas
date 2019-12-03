@@ -12,10 +12,22 @@
 typedef struct no Tno, * Pno; */
 	
 /* segunda solução */
+typedef struct aluno {
+
+  int matricula; /* chave */
+
+  char nome[81];
+
+  char turma;
+
+  char email[41];
+
+} Taluno;
+
 typedef struct no{
-	char info [50];
-	struct no * ante;
-	struct no * prox;
+    Taluno info;
+    struct no * ante;
+    struct no * prox;
 } Tno, * Pno ;
 	
 typedef struct {
@@ -23,6 +35,8 @@ typedef struct {
 	Tno * ulti;
 	int tam;
 } Tlista, * Plista;
+
+
 
 /*Criar **************************************/
 /*pré-condição: não existe
@@ -44,7 +58,7 @@ int len_lst(Plista lst);
 				int 0 - se não pré-condição ou
 				      - tam = 0 ou 
 				      - tam > 0 e elem não estiver na lista*/
-int in_lst(Plista lst, char * elem);
+int in_lst(Plista lst, Taluno elem);
 
 /*pré-condição: lst diferente de NULL
   pós-condição: int 1 - o campo tam = 0 
@@ -63,9 +77,9 @@ void print_lst(Plista lst);
   pós-condição: se vazia - 
 				se não vazia -
 */
-void append_lst(Plista lst, char * elem);
+void append_lst(Plista lst, Taluno elem);
 
-/*void append_lst(Plista lst, double elem){
+/*void append_lst(Plista lst, Taluno elem){
 	Pno novo = NULL;
 	
 	if  (lst != NULL){
@@ -100,7 +114,7 @@ void append_lst(Plista lst, char * elem);
 				se 0<pos<n elem é inserido em 
 				   uma posição 0<pos<n
 */
-void insert_lst(Plista lst, int pos, char * elem);
+void insert_lst(Plista lst, int pos, Taluno elem);
 
 
 
@@ -119,7 +133,7 @@ void del_ult_lst(Plista lst);
 void del_lst(Plista lst);
 
 
-void insert_start(Plista lista, char * elem);
+void insert_start(Plista lista, Taluno elem);
 
 
 Plista load_lst (FILE * arq);
@@ -129,10 +143,8 @@ void save_lst(Plista lst, FILE * arq);
 
 void del_pos_lst(Plista lst, int pos);
 
-int index_lst(Plista lista, char * elem);
+int index_lst(Plista lista, Taluno elem);
 
-void del_info_lst(Plista lst, char * elem);
+void del_info_lst(Plista lst, Taluno elem);
 
-char * get_pos_lst(Plista lst, int pos);
-
-void insert_ord_lst(Plista lst, char * nome);
+double get_pos_lst(Plista lst, int pos);

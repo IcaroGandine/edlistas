@@ -9,24 +9,23 @@
 int main() {
 	
 	Plista lista;
-	char * nome;
+	Taluno aluno1;
+	Taluno aluno2;
 
+	aluno1.matricula = 1010;
+	aluno2.matricula = 2020;
+	
 	lista = init_lst();
 
-	insert_ord_lst(lista, "jorge");
-    /*
-	insert_ord_lst(lista, "ana");
-	insert_ord_lst(lista, "celso ");
-	insert_ord_lst(lista, "moises do berrante");
-	*/
-	
+	append_lst(lista, aluno1);
+    append_lst(lista, aluno2);
+
 	print_lst(lista);
 
 	printf("\n");
 
-	nome = get_pos_lst(lista,10);
-
-	printf("%s", nome);
+	
+	
 	
 
 }
